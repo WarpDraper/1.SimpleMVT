@@ -7,3 +7,6 @@ def homepage(request):
     #return HttpResponse("Hello team!")
 def about(request):
     return render(request, 'about.html')
+
+def category(request):
+    return render(request, 'categories.html')
