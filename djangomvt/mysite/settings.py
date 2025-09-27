@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'categories.apps.CategoriesConfig',
     'django.contrib.admin',
+    'users.apps.UsersConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -125,6 +126,8 @@ STATICFILES_DIRS = [
 ]
 
 IMAGES_URL = 'images/'
+
+AUTH_USER_MODEL = 'users.CustomUser'
 
 IMAGES_ROOT = BASE_DIR / 'images'
 

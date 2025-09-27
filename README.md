@@ -53,5 +53,6 @@ py manage.py runserver 8888
 
 pip install Pillow
 py manage.py makemigrations categories
+py manage.py migrate
 deactivate
 ``````
