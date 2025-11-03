@@ -25,6 +25,9 @@ urlpatterns = [
     path('users/', include('users.urls')),
     path('categories/', include('categories.urls')),
     path('', views.homepage, name='homepage'),
+    path('products/', include('products.urls', namespace='products')),
+    path('homepage', views.homepage, name='homepage'),
     path('about/', views.about, name='about'),
 ]
 urlpatterns += static(settings.IMAGES_URL, document_root=settings.IMAGES_ROOT)
+urlpatterns += static(settings.IMAGEUSER_URL, document_root=settings.IMAGEUSER_ROOT)

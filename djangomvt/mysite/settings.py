@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 
+from django.conf.global_settings import STATICFILES_DIRS
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-1x7-5b#655uybw5dbl0sye@8&w=wm&_y3_t2*(s!v+%1be5m)0'
+SECRET_KEY = 'django-insecure-9^!dl0hop*_&#)e_9pyg$4u8urb4@gpg@v3e#cjn95ws=^+nfh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,14 +33,18 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'categories.apps.CategoriesConfig',
+    # 'categories',
+    'categories.apps.CategoriesConfig', # додаємо наш додаток categories
+    'users.apps.UsersConfig', # додаємо наш додаток users
+    'products.apps.ProductsConfig',
     'django.contrib.admin',
-    'users.apps.UsersConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'widget_tweaks'
+
 ]
 
 MIDDLEWARE = [
@@ -56,20 +62,19 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            'templates'
-        ],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.request',
+                'django.template.context_processors.media',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
         },
     },
 ]
-
+LOGIN_REDIRECT_URL = 'homepage'
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
 
@@ -80,7 +85,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-
     }
 }
 
@@ -125,11 +129,15 @@ STATICFILES_DIRS = [
     str(BASE_DIR / 'static'),
 ]
 
-IMAGES_URL = 'images/'
-
-AUTH_USER_MODEL = 'users.CustomUser'
+IMAGES_URL = '/images/'
 
 IMAGES_ROOT = BASE_DIR / 'images'
+
+IMAGEUSER_URL = '/imageUser/'
+
+IMAGEUSER_ROOT = BASE_DIR / 'imageUser'
+
+AUTH_USER_MODEL = 'users.CustomUser'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
